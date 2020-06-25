@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require("mongoose");
 
 const connectToDb = () => {
   mongoose
@@ -8,8 +8,8 @@ const connectToDb = () => {
       useCreateIndex: true,
       useFindAndModify: false,
     })
-    .catch(() => console.log('Error connecting to DB'));
+    .catch(() => console.log("Error connecting to DB"));
   return mongoose.connection;
 };
 
-export default connectToDb;
+module.exports = connectToDb;
