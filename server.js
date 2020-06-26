@@ -1,8 +1,10 @@
 const express = require("express");
+const router = require("./routes");
 
 const PORT = process.env.PORT || 3001;
-
 const app = express();
+
+app.use(router);
 
 // Test route to make sure the server is up
 app.get("/ok", (req, res) => {
