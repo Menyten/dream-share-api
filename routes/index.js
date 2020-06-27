@@ -1,36 +1,17 @@
 const express = require("express");
 const router = express.Router();
 
-const posts = [
-  {
-    title: "Yeet",
-    text: "I had a dream",
-    createdAt: new Date().toISOString(),
-  },
-  {
-    title: "Yeet",
-    text: "I had a dream",
-    createdAt: new Date().toISOString(),
-  },
-  {
-    title: "Yeet",
-    text: "I had a dream",
-    createdAt: new Date().toISOString(),
-  },
-  {
-    title: "Yeet",
-    text: "I had a dream",
-    createdAt: new Date().toISOString(),
-  },
-  {
-    title: "Yeet",
-    text: "I had a dream",
-    createdAt: new Date().toISOString(),
-  },
-];
+const Post = require("../models/Post");
 
-router.get("/posts", (req, res) => {
+router.get("/api/posts", async (req, res) => {
+  const posts = await Post.find();
   res.send(posts);
+});
+
+router.post("/api/posts", async (req, res) => {
+  const post = new Post(req.body);
+  const savedPost = await post.save();
+  res.send(savedPost);
 });
 
 module.exports = router;
